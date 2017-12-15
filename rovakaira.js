@@ -91,10 +91,10 @@ async function run() {
 
     __DEBUGGER('Lue paikka.');
     mittauspaikka = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_lblMeteringPointInformation').innerText);
-    __DEBUGGER(mittauspaikka);
+    console.log(mittauspaikka);
     __DEBUGGER('Lue taulu.');
     mittataulu = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_gvMeasurements_gvMeasurements').innerText);
-    __DEBUGGER(mittataulu);
+    console.log(mittataulu);
 
     __DEBUGGER('Seuraava paikka.');
     const PAIKKA_VALINTA = '#ContentPlaceHolder1_lbPartyMeteringPoint_arrow';
@@ -108,10 +108,10 @@ async function run() {
 
     __DEBUGGER('Lue paikka.');
     mittauspaikka = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_lblMeteringPointInformation').innerText);
-    __DEBUGGER(mittauspaikka);
+    console.log(mittauspaikka);
     __DEBUGGER('Lue taulu.');
     mittataulu = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_gvMeasurements_gvMeasurements').innerText);
-    __DEBUGGER(mittataulu);
+    console.log(mittataulu);
 
     // Take screenshot and exit
     await page.screenshot({path: 'screenshots/screenshot-' + Math.floor(Date.now() / 1000) + '.png', fullPage: true});
