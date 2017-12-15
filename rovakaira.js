@@ -23,10 +23,27 @@ function ifHeadless(){
         return false
 }
 
+function ifHelp(){
+
+    help_str = `Usage: rovakaira.js [options]
+
+Options:
+  -h, --help              This help
+  --headless              Run chrome headless
+  --debug                 Print debug messages`;
+
+    if (process.argv.indexOf('--help') > -1 || process.argv.indexOf('-h') > -1) {
+
+        console.log(help_str);
+        process.exit()
+    }
+}
+
 function sleep(ms) {
     __DEBUGGER('Sleeping ' + ms/1000 + 's.');
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 function sleep_about(ms) {
     min = Math.ceil(-500);
     max = Math.floor(500);
@@ -126,5 +143,6 @@ async function run() {
 
 }
 
+ifHelp();
 if (ifDebug()) console.log("Debug mode on!");
 run();
