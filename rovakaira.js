@@ -57,11 +57,7 @@ async function run() {
     conf = YAML.load('config.yml');
 
     const browser = await puppeteer.launch({
-        headless: ifHeadless(),
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox'
-        ]
+      headless: ifHeadless()
     });
     const page = await browser.newPage();
     page.setViewport({
