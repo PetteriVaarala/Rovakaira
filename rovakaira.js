@@ -1,10 +1,10 @@
+#!/usr/bin/env node
 const puppeteer = require('puppeteer');
 const YAML = require('yamljs');
 
 
 function __DEBUGGER(str){
     if (ifDebug()) {
-        //console.log("DEBUUG!");
         console.log(str);
     }
 }
