@@ -16,6 +16,13 @@ function ifDebug(){
         return false
 }
 
+function ifHeadless(){
+    if (process.argv.indexOf('--headless') > -1)
+       return true
+    else
+        return false
+}
+
 function sleep(ms) {
     __DEBUGGER('Sleeping ' + ms/1000 + 's.');
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -33,7 +40,7 @@ async function run() {
     conf = YAML.load('config.yml');
 
     const browser = await puppeteer.launch({
-      headless: !ifDebug()
+      headless: ifHeadless()
     });
     const page = await browser.newPage();
     page.setViewport({
@@ -91,10 +98,10 @@ async function run() {
 
     __DEBUGGER('Lue paikka.');
     mittauspaikka = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_lblMeteringPointInformation').innerText);
-    console.log(mittauspaikka);
+    __DEBUGGER(mittauspaikka);
     __DEBUGGER('Lue taulu.');
     mittataulu = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_gvMeasurements_gvMeasurements').innerText);
-    console.log(mittataulu);
+    __DEBUGGER(mittataulu);
 
     __DEBUGGER('Seuraava paikka.');
     const PAIKKA_VALINTA = '#ContentPlaceHolder1_lbPartyMeteringPoint_arrow';
@@ -108,10 +115,10 @@ async function run() {
 
     __DEBUGGER('Lue paikka.');
     mittauspaikka = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_lblMeteringPointInformation').innerText);
-    console.log(mittauspaikka);
+    __DEBUGGER(mittauspaikka);
     __DEBUGGER('Lue taulu.');
     mittataulu = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_gvMeasurements_gvMeasurements').innerText);
-    console.log(mittataulu);
+    __DEBUGGER(mittataulu);
 
     // Take screenshot and exit
     await page.screenshot({path: 'screenshots/screenshot-' + Math.floor(Date.now() / 1000) + '.png', fullPage: true});
