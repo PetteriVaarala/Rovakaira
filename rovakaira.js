@@ -120,6 +120,7 @@ async function run() {
     mittataulu = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_gvMeasurements_gvMeasurements').innerText);
     __DEBUGGER(mittataulu);
 
+
     __DEBUGGER('Seuraava paikka.');
     const PAIKKA_VALINTA = '#ContentPlaceHolder1_lbPartyMeteringPoint_arrow';
     await page.click(PAIKKA_VALINTA);
@@ -129,6 +130,14 @@ async function run() {
     await page.click(TOINEN_PAIKKA);
     await page.waitForNavigation();
     __DEBUGGER("Lataus valmis.");
+
+    __DEBUGGER('Lämpötila.');
+    await page.click(LAMPOTILA_NAPPI);
+    await sleep_about(1000);
+    __DEBUGGER('Päivitä.');
+    const PAIVITA_NAPPI = '#ContentPlaceHolder1_btnRefresh';
+    await page.click(PAIVITA_NAPPI);
+    await sleep_about(2000);
 
     __DEBUGGER('Lue paikka.');
     mittauspaikka = await page.evaluate(() => document.querySelector('#ContentPlaceHolder1_lblMeteringPointInformation').innerText);
